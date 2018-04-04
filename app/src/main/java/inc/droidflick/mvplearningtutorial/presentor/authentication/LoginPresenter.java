@@ -8,7 +8,7 @@ public interface LoginPresenter {
 
     void performLogin(String email, String password);
 
-    void performSignup(String email, String password);
+    void performSignup(String name, String email, String password);
 
 
 }

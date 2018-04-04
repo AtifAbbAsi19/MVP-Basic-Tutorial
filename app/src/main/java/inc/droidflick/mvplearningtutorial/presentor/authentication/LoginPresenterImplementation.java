@@ -23,7 +23,7 @@ public class LoginPresenterImplementation implements LoginPresenter {
 
         if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
             loginView.loginValidation();
-        } else if (email.equals("testing@gmail.com") && password.equals("test123")) {
+        } else if (email.equalsIgnoreCase("testing@gmail.com") && password.equals("test123")) {
             loginView.loginSuccess();
         } else {
             loginView.loginError();
@@ -32,7 +32,15 @@ public class LoginPresenterImplementation implements LoginPresenter {
     }
 
     @Override
-    public void performSignup(String email, String password) {
+    public void performSignup(String name, String email, String password) {
+
+
+        if (TextUtils.isEmpty(name) || TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
+            loginView.loginValidation();
+        } else {
+            loginView.loginError();
+        }
+
 
     }
 }

@@ -2,12 +2,14 @@ package inc.droidflick.mvplearningtutorial.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import inc.droidflick.mvplearningtutorial.R;
+import inc.droidflick.mvplearningtutorial.accessors.Accessors;
 import inc.droidflick.mvplearningtutorial.presentor.authentication.LoginPresenter;
 import inc.droidflick.mvplearningtutorial.presentor.authentication.LoginPresenterImplementation;
 import inc.droidflick.mvplearningtutorial.ui.core.BaseActivity;
@@ -16,7 +18,7 @@ import inc.droidflick.mvplearningtutorial.ui.view.LoginView;
 public class LoginActivity extends BaseActivity implements LoginView, View.OnClickListener {
 
 
-    EditText email, password;
+    EditText email, password, signUpName;
 
     Button login, signup;
 
@@ -37,6 +39,7 @@ public class LoginActivity extends BaseActivity implements LoginView, View.OnCli
 
     private void init() {
 
+        signUpName = (EditText) findViewById(R.id.signUpName);
         email = (EditText) findViewById(R.id.signUpEmail);
         password = (EditText) findViewById(R.id.signUpPassword);
         login = (Button) findViewById(R.id.loginButton);
@@ -52,18 +55,24 @@ public class LoginActivity extends BaseActivity implements LoginView, View.OnCli
 
         email.setError("Invalid Value");
         password.setError("Invalid Value");
-
+        signUpName.setError("Invalid Value");
 
     }
 
     @Override
     public void loginSuccess() {
+
+        if (!TextUtils.isEmpty(signUpName.getText().toString())) {
+            Accessors.getInstance().setName(signUpName.getText().toString());
+        }
+
+
         startActivity(new Intent(this, MainActivity.class));
     }
 
     @Override
     public void loginError() {
-        Toast.makeText(this, "Unable to Login", Toast.LENGTH_SHORT);
+        Toast.makeText(this, "Unable to Login", Toast.LENGTH_LONG).show();
     }
 
     @Override
