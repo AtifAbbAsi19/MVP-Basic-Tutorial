@@ -15,14 +15,27 @@ public class MainActivity extends BaseActivity {
     TextView displayTextView;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        displayTextView = findViewById(R.id.display);
 
         displayTextView.setText("Welcome \n" + Accessors.getInstance().getName());
 
+
+    }
+
+    @Override
+    public int getLayoutId() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    public void init() {
+        displayTextView = findViewById(R.id.display);
+    }
+
+    @Override
+    public void initListener() {
 
     }
 }

@@ -26,18 +26,22 @@ public class LoginActivity extends BaseActivity implements LoginView, View.OnCli
     LoginPresenter loginPresenter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
 
-        init();
 
         loginPresenter = new LoginPresenterImplementation(LoginActivity.this);
 
 
     }
 
-    private void init() {
+    @Override
+    public int getLayoutId() {
+        return R.layout.activity_login;
+    }
+
+    @Override
+    public void init() {
 
         signUpName = (EditText) findViewById(R.id.signUpName);
         email = (EditText) findViewById(R.id.signUpEmail);
@@ -46,7 +50,11 @@ public class LoginActivity extends BaseActivity implements LoginView, View.OnCli
         signup = (Button) findViewById(R.id.signupButton);
         login.setOnClickListener(this);
         signup.setOnClickListener(this);
+    }
 
+
+    @Override
+    public void initListener() {
 
     }
 
